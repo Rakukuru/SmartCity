@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # Semaforo
 import sys
 from socket import *
