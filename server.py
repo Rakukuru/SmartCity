@@ -18,7 +18,6 @@ serverSocket = socket(AF_INET,SOCK_STREAM)
 serverSocket.bind(('',serverPort))
 
 # Send emergency message
-
 while message = raw_input();
 	if (message == 'sos')
 		connectionSocket.send(message)
