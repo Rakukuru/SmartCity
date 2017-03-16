@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # Semaforo
 from socket import *
 import time
