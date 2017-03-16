@@ -1,12 +1,13 @@
 # Semaforo
-import sys
 from socket import *
 import time
 import threading
 
 # Default server
-serverName = '192.168.1.145'
-serverPort = 12000
+#serverName = '192.168.60.238'
+serverName = '127.0.0.1'
+serverPort = 5005
+messize = len("sos")
 
 def green():
     print("Green")
@@ -20,11 +21,11 @@ def luces():
     while 1:
         try:
             green()
-        except clientSocket.recv(2048) == "sos":
+        except clientSocket.recv(messize) == "sos":
             green()
         try:
             red()
-        except clientSocket.recv(2048) == "sos":
+        except clientSocket.recv(messize) == "sos":
             green()
 
 # Optional server port number
@@ -34,17 +35,21 @@ def luces():
 # Request IPv4 and TCP communication
 clientSocket = socket(AF_INET, SOCK_STREAM)
 
-# Open the TCP connection to the server at the specified port
-try:
-    clientSocket.connect((serverName,serverPort))
-except:
-    print('No es pot connectar amb el servidor')
-    print('Server: '+serverName)
-    print('Port: %d' % serverPort)
-    exit(-4)
+#clientSocket.setblocking(0)
+
+# The welcoming port that clients first use to connect
+clientSocket.bind((serverName, serverPort))
+
+# Start listening on the welcoming port
+clientSocket.listen(1)
+print('The server is ready to receive')
 
 # Read in some text from the user
 clientSocket.listen(1)
+
+
+print("waiting for connection")
+connection, client_address = clientSocket.accept()
 
 # Traffic light function
 luz = threading.Thread(target=luces)
