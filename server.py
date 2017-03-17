@@ -1,8 +1,7 @@
+#!/usr/bin/python
 
 from socket import *
 import sys
-
-
 
 # Default port number server will listen on
 #serverName = '192.168.60.238'
