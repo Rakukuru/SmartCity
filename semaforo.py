@@ -46,15 +46,10 @@ clientSocket.bind((serverName, serverPort))
 clientSocket.listen(1)
 print('The server is ready to receive')
 
-# Read in some text from the user
-clientSocket.listen(1)
-
 
 print("waiting for connection")
 connection, client_address = clientSocket.accept()
 
 # Traffic light function
-luz = threading.Thread(target=luces)
-luz.start()
-
+luces()
 
